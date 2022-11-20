@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <script src="https://unpkg.com/reveal.js@4.2.0/plugin/highlight/highlight.js"></script>
+    <title>Cours Flexbox - Démo</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicons/favicon-16x16.png">
+    <link rel="manifest" href="assets/favicons/site.webmanifest">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Poppins:ital,wght@0,300;0,400;1,700&family=Roboto:wght@900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/reveal.js@4.2.0/dist/reveal.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/reveal.js@4.2.0/plugin/highlight/monokai.css"
+    />
+    <link rel="stylesheet" href="index.css" />
+  </head>
+
+  <body class="hidden">
+    <svg
+      width="0"
+      height="0"
+      version="1.1"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 75 75"
+    >
+      <defs>
+        <clipPath id="squircle" clipPathUnits="objectBoundingBox">
+          <path
+            fill="red"
+            stroke="none"
+            d="
+            M 0,.5
+            C 0,0 0,0 .5,0
+            S 1,0 1,.5
+              1,1 .5,1
+              0,1 0,.5
+          "
+          />
+        </clipPath>
+      </defs>
+    </svg>
+    <div class="reveal dark">
+      <div class="slides">
+        <section class="intro">
+          <h1 class="title ff-oswald upper">
+            Apprendre et maîtriser le module CSS <br /><span class="tag"
+              >Flexbox</span
+            >
+          </h1>
+          <div class="banner">
+            <ul class="flex-container">
+              <li class="flex-item squircle">
+                <img src="assets/img/sangoku.png" alt="Sangoku picture" />
+              </li>
+              <li class="flex-item squircle">
+                <img src="assets/img/piccolo.png" alt="Piccolo picture" />
+              </li>
+              <li class="flex-item squircle">
+                <img src="assets/img/krilin.png" alt="Krilin picture" />
+              </li>
+              <li class="flex-item squircle">
+                <img src="assets/img/sangohan.png" alt="Sangohan picture" />
+              </li>
+              <li class="flex-item squircle">
+                <img src="assets/img/vegeta.png" alt="Vegeta picture" />
+              </li>
+            </ul>
+          </div>
+        </section>
+        <section class="what">
+          <h1 class="ff-oswald upper">
+            C'est quoi <span class="fw-black">Flexbox</span> ?
+          </h1>
+          <p class="fragment">
+            Module <span class="tag">CSS 3</span> : Modèle de boîte flexible
+            (Flexbox 😄)
+          </p>
+          <p class="fragment">
+            Ensemble de règles <span class="fw-black">CSS </span> qui sert à
+            disposer des éléments de manière flexible
+          </p>
+          <h2
+            style="margin: 6rem 0 3rem"
+            class="fragment fw-black ff-oswald upper"
+          >
+            Permet de :
+          </h2>
+          <ul class="list list--bullet">
+            <li class="fragment">
+              Disposer, aligner et distribuer l'espace entre les
+              <span class="tag">éléments</span> d'un
+              <span class="tag">conteneur</span> en
+              <span class="highlight upper">css</span>
+            </li>
+            <li class="fragment">
+              Créer des layouts de composants complexes et avancés avec un
+              minimum d'effort
+            </li>
+            <li class="fragment">
+              Ne plus s'embêter avec des techniques inadaptées, (float 😢,
+              table, display inline-block, etc...)
+            </li>
+          </ul>
+          <figure class="fragment broken-css-img">
+            <img
+              src="https://media.giphy.com/media/13FrpeVH09Zrb2/giphy.gif"
+              alt="Broken CSS"
+            />
+            <figcaption class="fw-ligh">
+              Un développeur qui se débat avec CSS...
+            </figcaption>
+          </figure>
+        </section>
+        <section class="context">
+          <h1 class="fw-black ff-oswald upper">Contexte</h1>
+          <section>
+            <h2
+              class="fw-black ff-oswald upper fragment"
+              style="margin-top: 3rem"
+            >
+              un peu d'histoire
+            </h2>
+            <ul class="list list--bullet">
+              <li class="fragment">
+                Première réflexion en <span class="tag">2008</span>
+              </li>
+              <li class="fragment">
+                Premier brouillon publié en
+                <span class="tag">2009</span>
+                <span class="fragment"
+                  >(
+                  <pre
+                    class="d-inline-block v-align-middle m-0"
+                  ><code class="language-css fz-medium">display: box;</code
+                ></pre>
+                  ,
+                  <pre
+                    class="d-inline-block v-align-middle m-0"
+                  ><code class="language-css fz-medium">box-*: ...;</code></pre>
+                  )</span
+                >
+              </li>
+              <li class="fragment">
+                Second brouillon en <span class="tag">2011</span>
+                <span class="fragment"
+                  >(
+                  <pre
+                    class="d-inline-block v-align-middle m-0"
+                  ><code class="language-css fz-medium">display: flexbox;</code
+              ></pre>
+                  ,
+                  <pre
+                    class="d-inline-block v-align-middle m-0"
+                  ><code class="language-css fz-medium">flex();</code></pre>
+                  )</span
+                >
+              </li>
+              <li class="fragment">
+                Première version quasi finale en
+                <span class="tag">2012</span> (statut “W3C Candidate
+                Recommandation”)
+              </li>
+              <li class="fragment">
+                Version actuelle qui date de <span class="tag">2017</span>
+                <span class="fragment"
+                  >(
+                  <pre
+                    class="d-inline-block v-align-middle m-0"
+                  ><code class="language-css fz-medium">display: flex;</code
+              ></pre>
+                  )</span
+                >
+              </li>
+            </ul>
+          </section>
+          <section>
+            <h2 class="fw-black ff-oswald upper" style="margin-top: 3rem">
+              Support navigateurs
+            </h2>
+            <div class="fragment">
+              <p>Très bon support des navigateurs web ⬇️</p>
+              <figure class="caniuse-figure">
+                <img
+                  src="assets/img/caniuse-support.png"
+                  alt="caniuse Flexbox support"
+                />
+                <figcaption class="fw-light">
+                  source
+                  <a href="https://caniuse.com/?search=flexbox" target="_blank"
+                    >caniuse.com/?search=flexbox</a
+                  >
+                </figcaption>
+              </figure>
+            </div>
+          </section>
+        </section>
+        <section class="bases">
+          <h1 class="ff-oswald fw-black upper">Les bases</h1>
+          <section class="container-and-items">
+            <h2 class="fragment ff-oswald upper">1. La terminologie</h2>
+            <h3 class="fragment ff-poppins fw-regular">
+              2 éléments centraux :
+            </h3>
+            <h2
+              class="fw-black ff-oswald upper fragment"
+              style="
+                margin-top: 4.5rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              "
+            >
+              un conteneur&nbsp;<span
+                class="ff-poppins fw-regular fz-large tt-initial"
+                >(<span class="tag" style="margin: 0 0.35rem"
+                  >Flex-Container</span
+                >)</span
+              >
+            </h2>
+            <div
+              class="flex-container--sample fragment"
+              data-sample="container"
+            >
+              <ul class="flex-container">
+                <li class="flex-item squircle"></li>
+                <li class="flex-item squircle"></li>
+                <li class="flex-item squircle"></li>
+              </ul>
+            </div>
+            <h2
+              class="fw-black ff-oswald upper fragment"
+              style="
+                margin-top: 4.5rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              "
+            >
+              des descendants flexibles&nbsp;<span
+                class="ff-poppins fw-regular fz-large tt-initial"
+                >(<span class="tag" style="margin: 0 0.35rem">Flex Items</span
+                >)</span
+              >
+            </h2>
+            <div class="flex-items--sample fragment" data-sample="item">
+              <ul class="flex-container">
+                <li class="flex-item squircle"></li>
+                <li class="flex-item squircle"></li>
+                <li class="flex-item squircle"></li>
+              </ul>
+            </div>
+          </section>
+          <section class="space-distribution">
+            <h2 class="ff-oswald upper">2. La répartition des éléments</h2>
+            <h3 class="fragment ff-poppins fw-regular">
+              Elle se fait sur deux axes
+            </h3>
+            <h3
+              class="fragment ff-poppins fw-regular"
+              style="
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-top: 4rem;
+              "
+            >
+              Axe principal (<span class="tag">Main-Axis</span>)
+            </h3>
+            <p class="fragment">
+              Axe de distribution principale des
+              <span class="tag">Flex-Items</span> au sein du conteneur
+              (horizontal ou vertical)
+            </p>
+            <h3
+              class="fragment ff-poppins fw-regular"
+              style="
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-top: 4rem;
+              "
+            >
+              Axe secondaire (<span class="tag">Cross-Axis</span>)
+            </h3>
+            <p class="fragment">
+              Perpendiculaire à l'axe principal (horizontal ou vertical là
+              aussi)
+            </p>
+          </section>
+          <section class="space-distribution--schemes">
+            <h2 class="ff-oswald upper">
+              2. La répartition des éléments - schémas
+            </h2>
+            <div class="fragment axis-schemes">
+              <div class="scheme--wrapper axis--horizontale">
+                <div class="axis-label main-axis--label">
+                  <span class="arrow arrow-left"></span>
+                  <span class="label">Main-Axis</span>
+                  <span class="arrow arrow-right"></span>
+                </div>
+                <div class="axis-label cross-axis--label">
+                  <span class="arrow arrow-left"></span>
+                  <span class="label">Cross-Axis</span>
+                  <span class="arrow arrow-right"></span>
+                </div>
+                <ul class="scheme main-axis--horizontale">
+                  <li class="flex-item">1</li>
+                  <li class="flex-item">2</li>
+                  <li class="flex-item">3</li>
+                </ul>
+              </div>
+              <div class="separator"></div>
+              <div class="scheme--wrapper axis--verticale">
+                <div class="axis-label main-axis--label">
+                  <span class="arrow arrow-left"></span>
+                  <span class="label">Main-Axis</span>
+                  <span class="arrow arrow-right"></span>
+                </div>
+                <div class="axis-label cross-axis--label">
+                  <span class="arrow arrow-left"></span>
+                  <span class="label">Cross-Axis</span>
+                  <span class="arrow arrow-right"></span>
+                </div>
+                <ul class="scheme main-axis--verticale">
+                  <li class="flex-item">1</li>
+                  <li class="flex-item">2</li>
+                  <li class="flex-item">3</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+          <section>
+            <h2 class="ff-oswald upper">
+              2. La répartition des éléments - schémas bis
+            </h2>
+            <div class="axis-schemes multi">
+              <div class="scheme--wrapper axis--horizontale fragment">
+                <h2 class="ff-poppins lower fz-large fw-light">
+                  <span class="tag">Main-Axis</span> horizontal (par défaut)
+                </h2>
+                <div class="schema--wrapper">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="78.56939500000001 100.099995 267.00121 181.00001000000003">
+                    <defs>
+                      <mask id="line1Mask1">
+                        <path id="animated-path-1" data-addclass="animate" stroke-dashoffset="0" stroke-dasharray="0" stroke-width="2" stroke-linecap="round" stroke="#fff" stroke-width="1.5" stroke-dashoffset="0" stroke-miterlimit="10" d="M 89.44282 -12.71334 C 63.783 29.80865 -32.25806 -4.420870000000001 -32.25806 -4.420870000000001 C -32.25806 -4.420870000000001 -76.24633 -15.87903 -89.44281000000001 12.713349999999998" stroke-linecap="round"/>
+                      </mask>
+                    </defs>
+                    <g transform="matrix(1 0 0 1 211.14 191.1)">
+                      <path class="animated-line" mask="url(#line1Mask1)" stroke-dasharray="7 7" stroke-linecap="round" stroke-width="2" stroke-miterlimit="10" fill="none" d="M 89.44282 -12.71334 C 63.783 29.80865 -32.25806 -4.420870000000001 -32.25806 -4.420870000000001 C -32.25806 -4.420870000000001 -76.24633 -15.87903 -89.44281000000001 12.713349999999998"/>
+                    </g>
+                    <g transform="matrix(0.95 0.31 -0.31 0.95 122.93 203.82)">
+                      <path id="animated-arrow-1" data-addclass="animate" style="stroke-width: 2; stroke-linecap: round;stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(255,255,255); fill-opacity: 0; fill-rule: nonzero; opacity: 1;" vector-effect="non-scaling-stroke" transform=" translate(0, 0)" d="M -4.48645 -4.77009 C -4.48645 -4.77009 -4.48645 1.0041900000000004 -2.3867099999999994 4.153790000000001 C -0.2869699999999993 7.303400000000001 1.8617900000000005 -2.6703599999999996 4.486460000000001 -2.1454199999999997" stroke-linecap="round"/>
+                    </g>
+                    </svg>
+                  <ul class="scheme main-axis--horizontale">
+                    <li class="flex-item fragment">1</li>
+                    <li class="flex-item fragment">2</li>
+                    <li class="flex-item fragment" data-trigger="#animated-path-1,#animated-arrow-1">3</li>
+                    <li class="flex-item fragment">4</li>
+                    <li class="flex-item fragment">5</li>
+                    <li class="flex-item fragment">6</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="scheme--wrapper axis--verticale fragment">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="78.56939500000001 100.099995 267.00121 181.00001000000003">
+                  <defs>
+                    <mask id="line1Mask2">
+                      <path id="animated-path-2" data-addclass="animate" stroke-dashoffset="0" stroke-dasharray="0" stroke-width="2" stroke-linecap="round" stroke="#fff" stroke-width="1.5" stroke-dashoffset="0" stroke-miterlimit="10" d="M 89.44282 -12.71334 C 63.783 29.80865 -32.25806 -4.420870000000001 -32.25806 -4.420870000000001 C -32.25806 -4.420870000000001 -76.24633 -15.87903 -89.44281000000001 12.713349999999998" stroke-linecap="round"/>
+                    </mask>
+                  </defs>
+                  <g transform="matrix(1 0 0 1 211.14 191.1)">
+                    <path class="animated-line" mask="url(#line1Mask2)" stroke-dasharray="7 7" stroke-linecap="round" stroke-width="2" stroke-miterlimit="10" fill="none" d="M 89.44282 -12.71334 C 63.783 29.80865 -32.25806 -4.420870000000001 -32.25806 -4.420870000000001 C -32.25806 -4.420870000000001 -76.24633 -15.87903 -89.44281000000001 12.713349999999998"/>
+                  </g>
+                  <g transform="matrix(0.95 0.31 -0.31 0.95 122.93 203.82)">
+                    <path id="animated-arrow-2" data-addclass="animate" style="stroke-width: 2; stroke-linecap: round;stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(255,255,255); fill-opacity: 0; fill-rule: nonzero; opacity: 1;" vector-effect="non-scaling-stroke" transform=" translate(0, 0)" d="M -4.48645 -4.77009 C -4.48645 -4.77009 -4.48645 1.0041900000000004 -2.3867099999999994 4.153790000000001 C -0.2869699999999993 7.303400000000001 1.8617900000000005 -2.6703599999999996 4.486460000000001 -2.1454199999999997" stroke-linecap="round"/>
+                  </g>
+                  </svg>
+                <h2 class="ff-poppins lower fz-large fw-light">
+                  <span class="tag">Main-Axis</span> vertical
+                </h2>
+                <ul class="scheme main-axis--verticale">
+                  <li class="flex-item fragment">1</li>
+                  <li class="flex-item fragment">2</li>
+                  <li class="flex-item fragment" data-trigger="#animated-path-2,#animated-arrow-2">3</li>
+                  <li class="flex-item fragment">4</li>
+                  <li class="flex-item fragment">5</li>
+                  <li class="flex-item fragment">6</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+        </section>
+        <section class="demo" data-state="demo">
+          <h1 class="ff-oswald fw-black upper">Démo</h1>
+          <div style="margin-bottom: 4rem">
+            <p class="fragment">
+              Répartition de l'espace entre les éléments au sein d'un
+              <span class="tag">Flex-Container</span>
+            </p>
+          </div>
+          <div class="flex-container fragment" style="padding-bottom: 4em;">
+            <h2 class="flex-container--rule r-stack d-none">
+              <pre><code class="fragment fade-in-then-out language-css" data-flex="flex-start"
+                >justify-content: flex-start;</code
+              ></pre>
+              <pre><code class="fragment fade-in-then-out language-css" data-flex="flex-end"
+                >justify-content: flex-end;</code
+              ></pre>
+              <pre><code class="fragment fade-in-then-out language-css" data-flex="center"
+                >justify-content: center;</code
+              ></pre>
+              <pre><code class="fragment fade-in-then-out language-css" data-flex="space-between"
+                >justify-content: space-between;</code
+              ></pre>
+              <pre><code class="fragment fade-in-then-out language-css" data-flex="space-around"
+                >justify-content: space-around;</code
+              ></pre>
+              <pre><code class="fragment fade-in-then-out language-css" data-flex="space-evenly"
+                >justify-content: space-evenly;</code
+              ></pre>
+              <pre><code class="fragment fade-in-then-out language-css" data-flex="reverse"
+                >flex-direction: row-reverse;</code
+              ></pre>
+              <pre><code class="fragment fade-in-then-out language-css" data-flex="align-self"
+                >align-self: <value>;</code
+              ></pre>
+              <pre><code class="fragment fade-in-then-out language-css" data-flex="align-items-center"
+                >align-items: center;</code
+              ></pre>
+              <pre><code class="fragment fade-in-then-out language-css" data-flex="custom-star"
+                ><custom-star></code
+              ></pre>
+              <pre><code class="fragment fade-in-then-out language-css" data-flex="custom-star-closest"
+                ><custom-star-closest></code
+              ></pre>
+              <pre><code class="fragment fade-in-then-out language-css" data-flex="margin-auto-last"
+                >margin-left: auto;</code
+              ></pre>
+            </h2>
+            <ul class="container light flex-start">
+              <li class="flex-item squircle">
+                <img src="assets/img/sangoku.png" alt="Sangoku picture" />
+              </li>
+              <li class="flex-item squircle">
+                <img src="assets/img/piccolo.png" alt="Piccolo picture" />
+              </li>
+              <li class="flex-item squircle">
+                <img src="assets/img/krilin.png" alt="Krilin picture" />
+              </li>
+              <li class="flex-item squircle">
+                <img src="assets/img/sangohan.png" alt="Sangohan picture" />
+              </li>
+              <li class="flex-item squircle">
+                <img src="assets/img/vegeta.png" alt="Vegeta picture" />
+              </li>
+            </ul>
+          </div>
+        </section>
+        <section class="yes-but">
+          <section>
+            <h1 class="upper ff-oswald">Ça a l'air vraiment cool 😃</h1>
+              <p>Les possibilités sont quasi infinies...</p>
+              <figure>
+                <img
+                  src="https://media.giphy.com/media/kUiVangO4Yf8Q/giphy.gif"
+                  alt="To infinity and beyond!"
+                />
+                <figcaption class="fw-ligh">
+                  Flexbox, c'est un peu de la triche quand même !...
+                </figcaption>
+              </figure>
+              <p class="fragment">Mais attention...</p>
+          </section>
+          <section>
+            <h1 class="upper ff-oswald"><span class="tag">Flexbox</span> ne permet pas tout</h1>
+            <ul class="list list--bullet">
+              <li class="fragment">Layout sur une dimension uniquement</li>
+              <li class="fragment">Pas indiqué pour le Layout de page (pour ça, il y a le <span class="tag">Module CSS Grid Layout</span>, mais c'est une autre histoire 🤨)</li>
+            </ul>
+            <p class="fragment">Des articles utiles</p>
+            <a class="d-block fragment" style="margin-bottom: 1rem;" href="https://apptitude.ch/digital-insights/les-layout-du-web-partie-2-flexbox-et-grid/">https://apptitude.ch/digital-insights/les-layout-du-web-partie-2-flexbox-et-grid/</a>
+            <a class="d-block fragment" style="margin-bottom: 1rem;" href="https://ishadeed.com/article/grid-layout-flexbox-components/">https://ishadeed.com/article/grid-layout-flexbox-components/</a>
+          </section>
+        </section>
+        <section>
+          <h1 class="upper ff-oswald">C'est parti !</h1>
+          <figure>
+            <img
+              src="https://media.giphy.com/media/Ss6Y6NeC8O79WhYgdU/giphy.gif"
+              alt="Let's go!"
+            />
+            <figcaption class="fw-ligh">
+              Allez, on voit tout ça ensemble ! 😉
+            </figcaption>
+          </figure>
+        </section>
+      </div>
+    </div>
+    <footer class="prez-footer hidden">
+      <div class="copyright">
+        Copyright (C) {{currentYear}} Romuald Duconseil
+        <a href="https://github.com/makavelithadon" target="_blank"
+          ><svg
+            class="github-icon"
+            height="32"
+            viewBox="0 0 16 16"
+            version="1.1"
+            width="32"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"
+            ></path></svg
+        ></a>
+      </div>
+    </footer>
+
+    <script src="https://unpkg.com/reveal.js@4.2.0/dist/reveal.js"></script>
+    <script src="index.js" type="module"></script>
+  </body>
+</html>

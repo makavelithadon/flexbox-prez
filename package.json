@@ -1,0 +1,21 @@
+{
+  "name": "presentation",
+  "version": "1.0.0",
+  "description": "Ceci est une démo interactive et explicative du cours sur les Flexbox",
+  "main": "index.html",
+  "scripts": {
+    "install:extensions": "node scripts/install-ext.js",
+    "start": "run-s styles && run-p styles:watch start:live-server",
+    "start:live-server": "node scripts/live-server",
+    "styles": "sass sass:",
+    "styles:watch": "sass --watch sass:"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "live-server": "^1.2.1",
+    "npm-run-all": "^4.1.5",
+    "sass": "^1.49.0"
+  }
+}
